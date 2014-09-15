@@ -22,7 +22,11 @@ ZLogger &ZLogger::getInstance()
 	{
 		m_zloger = new ZLogger();
 		m_zloger->m_enable = true;
+#ifdef WIN32
 		fopen_s(&(m_zloger->m_fp), "ZLogger.log", "w");
+#else
+        fopen("ZLogger.log", "w");
+#endif
 		return *m_zloger;
 	}
 }

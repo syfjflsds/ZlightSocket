@@ -13,6 +13,10 @@
 #ifdef WIN32
 #pragma comment(lib,"ws2_32.lib")
 #include <WinSock2.h>
+#else
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #endif
 
 
@@ -38,7 +42,8 @@ namespace Zlight
 		SOCKET m_serverId;
 		SOCKET m_clientId;
 #else
-		int m_socketId;
+		int m_serverId;
+        int m_clientId;
 #endif
 		sockaddr_in m_serverAddr;
 		sockaddr_in m_clientAddr;

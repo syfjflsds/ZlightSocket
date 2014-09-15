@@ -1,6 +1,6 @@
 /*********************************************************************************
 *
-*    ZLoger, ��Zlight Socket��Loger������ͨ��������������ӵ�����Ϣ
+*    ZLoger,  «Zlight SocketµƒLoger£¨ø…“‘Õ®π˝À¸¿¥∑Ω±„µÿ‘ˆº”µ˜ ‘–≈œ¢
 *
 **********************************************************************************/
 
@@ -8,15 +8,16 @@
 #define _ZLOGER_H__
 
 #include <cstdio>
+#include <unistd.h>
 
 namespace Zlight
 {
 	class ZLogger
 	{
 	public:
-		static ZLogger & getInstance(); //��ȡZLoggerʵ��
-		void setEnable(bool isEnable);  //�����Ƿ��ӡLog
-		void Log(const char *logInfo);  //��Log����¼��Ϣ
+		static ZLogger & getInstance(); //ªÒ»°ZLogger µ¿˝
+		void setEnable(bool isEnable);  //…Ë÷√ «∑Ò¥Ú”°Log
+		void Log(const char *logInfo);  //”√Log¿¥º«¬º–≈œ¢
 	private:
 		ZLogger();
 		virtual ~ZLogger();

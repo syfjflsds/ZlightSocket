@@ -17,9 +17,10 @@ TCPSocket::~TCPSocket()
 
 void TCPSocket::init(SocketKind kind, const char *ipStr, int port)
 {
+    
+	int ret;
 #ifdef WIN32
 	WSADATA wsaData;
-	int ret;
 	if ((ret = WSAStartup(MAKEWORD(2, 2), &wsaData)) != 0)
 	{
 		LOGGER.Log("WSAStart failed with error");
@@ -53,6 +54,7 @@ void TCPSocket::init(SocketKind kind, const char *ipStr, int port)
 
 void TCPSocket::release()
 {
+#ifdef WIN32
 	if (m_serverId)
 	{
 		closesocket(m_serverId);
@@ -63,7 +65,7 @@ void TCPSocket::release()
 		closesocket(m_clientId);
 		LOGGER.Log("Client ID has closed");
 	}
-#ifdef WIN32
+
 	if (WSACleanup() == SOCKET_ERROR)
 	{
 		LOGGER.Log("WSACleanup failed with error");
@@ -72,6 +74,11 @@ void TCPSocket::release()
 	{
 		LOGGER.Log("WSACleanup failed with error");
 	}
+#else
+    if (m_serverId)
+    {
+        close(m_serverId);
+    }
 #endif
 }
 
