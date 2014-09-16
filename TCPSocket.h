@@ -19,6 +19,8 @@
 #include <arpa/inet.h>
 #endif
 
+#include "ZLoger.h"
+
 
 enum SocketKind
 {
@@ -35,8 +37,6 @@ namespace Zlight
 		virtual ~TCPSocket();
 		virtual void init(SocketKind kind, const char *ipStr = "127.0.0.1", int port = 9210);
 		void release();
-		//void bindAndInit(SocketKind kind, const char *ipStr = "127.0.0.1", int port = 9210);
-		virtual void action();
 	protected:
 #ifdef WIN32
 		SOCKET m_serverId;
@@ -47,11 +47,10 @@ namespace Zlight
 #endif
 		sockaddr_in m_serverAddr;
 		sockaddr_in m_clientAddr;
-		int m_clientAddrLen;
+		//int m_clientAddrLen;
 		SocketKind m_kind;
 
 	};
 }
-
 
 #endif

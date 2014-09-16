@@ -45,7 +45,7 @@ void TCPSocket::init(SocketKind kind, const char *ipStr, int port)
 	}
 	else
 	{
-		m_clientId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+		m_serverId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		m_serverAddr.sin_family = AF_INET;
 		m_serverAddr.sin_port = htons(port);
 		m_serverAddr.sin_addr.s_addr = inet_addr(ipStr);
@@ -80,31 +80,4 @@ void TCPSocket::release()
         close(m_serverId);
     }
 #endif
-}
-
-/*void TCPSocket::bindAndInit(SocketKind kind, const char *ipStr, int port)// = "127.0.0.1"
-{
-	LOGGER.Log("bind And Init");
-	m_serverId = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-	m_kind = kind;
-	if (m_kind == SERVER)
-	{
-		m_serverAddr.sin_family = AF_INET;
-		m_serverAddr.sin_port = htons(port);
-		m_serverAddr.sin_addr.s_addr = inet_addr(ipStr);
-		bind(m_serverId, (sockaddr *)&m_serverAddr, sizeof(m_serverAddr));
-	}
-	else
-	{
-
-	}
-}*/
-
-void TCPSocket::action()
-{
-	/*listen(m_serverId, 5);
-	while (true)
-	{
-		m_clientId = accept(m_serverId, (SOCKADDR *)&m_clientAddr, &m_clientAddrLen);
-	}*/
 }
