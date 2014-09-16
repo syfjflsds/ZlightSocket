@@ -8,7 +8,9 @@
 #define _ZLOGER_H__
 
 #include <cstdio>
+#ifndef WIN32
 #include <unistd.h>
+#endif
 
 namespace Zlight
 {
