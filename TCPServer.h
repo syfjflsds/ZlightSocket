@@ -25,7 +25,11 @@ namespace Zlight
 		virtual void run();
 	protected:
 		virtual void init(const char *ipStr = "127.0.0.1", int port = 9210);
+#ifdef WIN32
 		std::vector<SOCKET> m_sockIdVec;
+#else
+        std::vector<int> m_sockIdVec;
+#endif
 		bool m_isServerRun;
 		friend unsigned int __stdcall threadFun(void * pm)
 		{
